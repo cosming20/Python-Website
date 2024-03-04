@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <title>Calendar App</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 18px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+        form {
+            position: absolute;
+            top: 10px;
+            right: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Calendar App</h1>
+    </header>
+    {% if user %}
+            <form action="{{ url_for('logout') }}" method="get">
+                <button type="submit">Logout</button>
+            </form>
+    {% endif %} 
+    <main>
+        <p>Welcome to the Calendar App! Organize your events and stay on schedule.</p>
+        
+        <button onclick="location.href='{% if user %}{{ url_for('add_event', id=user['_id']) }}{% endif %}'">Add Event</button>
+        <button onclick="location.href='{% if user %}{{ url_for('events_page', id=user['_id']) }}{% endif %}'">Edit/Delete Events</button>
+        <button id="viewCalendarButton" onclick="location.href='{% if user %}{{ url_for('calendar', id=user['_id']) }}{% endif %}'">View Calendar with Events</button>
+        
+    </main>
+    <script>
+    </script>
+</body>
+</html>

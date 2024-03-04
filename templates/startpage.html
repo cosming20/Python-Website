@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar App</title>
+    <style>
+        
+        body {
+            text-align: center; 
+        }
+
+        .startup-container {
+            max-width: 400px;
+            margin: 10px auto; 
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .startup-container h2 {
+            color: #3498db;
+        }
+
+        .startup-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .login-btn, .signup-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login-btn {
+            background-color: #3498db;
+        }
+
+        .signup-btn {
+            background-color: #2ecc71;
+        }
+        .container {
+
+            margin-top: 50px;
+            
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Calendar_icon_%282020%29.svg/1024px-Google_Calendar_icon_%282020%29.svg.png" alt="Your Image Description" style="width: 100px; height: auto;">
+    </div>
+    <div class="startup-container">
+        <h2>Welcome to Calendar App</h2>
+        <p>Choose an option to get started:</p>
+        
+        <div class="startup-buttons">
+            <a href="{{ url_for('login') }}" class="login-btn">Login</a>
+            <a href="{{ url_for('signup') }}" class="signup-btn">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html>

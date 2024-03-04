@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminder</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.5/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.5/main.min.js"></script>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .button-container {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .button-container button {
+            background-color: #66bb6a;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .button-container button:hover {
+            background-color: #2980b9;
+        }
+
+        #calendar {
+            width: 100%;
+            padding: 20px;
+            margin: 20px;
+        }
+        a {
+        color: white;
+        text-decoration: none; /* Removes the underline */
+        }       
+
+        a:hover {
+        color: lightgray; /* Change the color when hovered */
+        }
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+        .fc-daygrid-day-number {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        font-size: 14px;
+        color: #333; /* Adjust color as needed */
+    }
+
+    </style>
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('home', id=user['_id']) }}">
+            <h1>Calendar App</h1>
+        </a>
+    </header>
+    <div class="button-container">
+    </div>
+    <div id="calendar"></div>
+
+    <script>
+        console.log('Calendar events:', JSON.parse('{{ calendarEvents | safe }}'));
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                events: {{ calendarEvents | safe }},
+                dayRender: function(info) {
+                // Create a span element for the day number
+                var dayNumberSpan = document.createElement('span');
+                dayNumberSpan.className = 'fc-daygrid-day-number';
+                dayNumberSpan.innerHTML = info.dayNumber.toString();
+                
+                // Append the span to the cell
+                info.el.appendChild(dayNumberSpan);
+            },
+            });
+            calendar.render();
+            function loadEventsFromUserStorage() {
+                var events = localStorage.getItem('calendarEvents');
+                return events ? JSON.parse(events) : [];
+            }
+        });
+    </script>
+</body>
+</html>

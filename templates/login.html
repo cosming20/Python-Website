@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;  /* Adjust the width as needed */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button,
+        a {
+            background-color: hsl(234, 96%, 51%);
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100px;  /* Make the button full width */
+            text-align: center;  /* Center text within the button */
+            display: inline-block;  /* Ensure proper inline display */
+            text-decoration: none;
+              /* Remove underline from links */
+        }
+
+        button:hover {
+            background-color: hwb(249 3% 1%);
+        }
+
+        a {
+
+            align-content: right;
+            height: 20px;
+
+        }
+        h1 {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-size: 18px;
+            color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="{{ url_for('login') }}">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+        <a href="{{ url_for('signup') }}">Signup</a>
+    </form>
+</body>
+</html>
